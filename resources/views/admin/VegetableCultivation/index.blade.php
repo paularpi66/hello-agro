@@ -1,0 +1,52 @@
+@extends('layouts.admin')
+@section('admin_content')
+<main class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <table id="example" class="table align-middle mb-0 bg-white">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Veg Name</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($all_data as $single_data)
+                                    <tr>
+                                            <td>
+                                                @if(!$single_data->plant_name == "")
+                                                {{ $single_data->plant_name }}
+                                                @else
+                                                No Title Here
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(!$single_data->image == "")
+                                                <img src="{{asset('uploads/image/'.$single_data->image)}}" height="40px" alt="">
+                                                @else
+                                                <img src="{{asset('uploads/No_image_available.svg.webp')}}" class="img-fluid" width="" height="50px" alt="">
+                                                @endif
+                                            </td>
+                                            <td>
+                                            {{ $single_data->status == 1 ? 'ON' : 'OFF' }}
+                                            </td>
+                                            <td>{{ $single_data->description }}</td>
+                                            <td>
+                                                <a href="{{url('admin/vegcul-edit/'.$single_data->id)}}">Edit</a>
+                                                <a onclick="return window.confirm('Are you sure?');" href="{{url('admin/vegcul-del/'.$single_data->id)}}">Delete</a>
+                                            </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+@endsection

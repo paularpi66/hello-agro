@@ -1,0 +1,11 @@
+@media (min-width: 700px) and (max-width: 999px) {
+    .my_card {
+        width: 12rem;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1400px) {
+    .my_card {
+        width: 17rem;
+    }
+}
